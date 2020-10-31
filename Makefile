@@ -1,4 +1,4 @@
-exec=mpiexec -n 10 python
+exec=mpiexec -n 22 python
 pre:
 	mkdir -p logs/
 
@@ -117,14 +117,14 @@ alluperiodic2d: pre
 	$(exec) periodic2d/periodic2d.py --nref 5 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/allu-periodic2d-gamma1e6ref5.log || 1
 
 constaintimprovement: pre
-	$(exec) oneconstant/oneconstant.py --nref 1 --gamma 10 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/constraint-improvement-gamma10.log || 1
-	$(exec) oneconstant/oneconstant.py --nref 1 --gamma 50 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/constraint-improvement-gamma50.log || 1
-	$(exec) oneconstant/oneconstant.py --nref 1 --gamma 1e2 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/constraint-improvement-gamma1e2.log || 1
-	$(exec) oneconstant/oneconstant.py --nref 1 --gamma 5e2 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/constraint-improvement-gamma5e2.log || 1
-	$(exec) oneconstant/oneconstant.py --nref 1 --gamma 1e3 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/constraint-improvement-gamma1e3.log || 1
-	$(exec) oneconstant/oneconstant.py --nref 1 --gamma 5e3 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/constraint-improvement-gamma5e3.log || 1
-	$(exec) oneconstant/oneconstant.py --nref 1 --gamma 1e4 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/constraint-improvement-gamma1e4.log || 1
-	$(exec) oneconstant/oneconstant.py --nref 1 --gamma 5e4 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/constraint-improvement-gamma5e4.log || 1
+	python oneconstant/oneconstant.py --nref 1 --gamma 10 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard --improv-constraint True | tee logs/constraint-improvement-gamma10.log || 1
+	python oneconstant/oneconstant.py --nref 1 --gamma 50 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard --improv-constraint True | tee logs/constraint-improvement-gamma50.log || 1
+	python oneconstant/oneconstant.py --nref 1 --gamma 1e2 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard --improv-constraint True | tee logs/constraint-improvement-gamma1e2.log || 1
+	python oneconstant/oneconstant.py --nref 1 --gamma 5e2 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard --improv-constraint True | tee logs/constraint-improvement-gamma5e2.log || 1
+	python oneconstant/oneconstant.py --nref 1 --gamma 1e3 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard --improv-constraint True | tee logs/constraint-improvement-gamma1e3.log || 1
+	python oneconstant/oneconstant.py --nref 1 --gamma 5e3 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard --improv-constraint True | tee logs/constraint-improvement-gamma5e3.log || 1
+	python oneconstant/oneconstant.py --nref 1 --gamma 1e4 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard --improv-constraint True | tee logs/constraint-improvement-gamma1e4.log || 1
+	python oneconstant/oneconstant.py --nref 1 --gamma 5e4 --k 1 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard --improv-constraint True | tee logs/constraint-improvement-gamma5e4.log || 1
 	python oneconstant/error.py
 
 alluoneconstant: pre

@@ -10,3 +10,4 @@ parser.add_argument("--stab-type", choices=["discrete", "continuous"], default="
 parser.add_argument("--prolong-type", choices=["auto", "none"], default="none")
 parser.add_argument("--pressure-element", choices=["DG0", "CG1"], default="CG1")
 parser.add_argument("--nonlinear-iteration", choices=["newton", "picard"], default="picard")
+parser.add_argument("--improv-constraint", choices=["True", "False"], default="False")

@@ -100,7 +100,12 @@ choice = {"almg-star": solveroptions.fieldsplit_with_mg,
 if args.solver_type in ["fasvanka", "faspardecomp"]:
     solveroptions.common = choice
 else:
-    solveroptions.common.update(choice)
+    if args.improv_constraint == "True":
+        solveroptions.common.update(choice)
+        solveroptions.common["snes_rtol"] = 1e-7
+        solveroptions.common["snes_atol"] = 1e-16
+    else:
+        solveroptions.common.update(choice)
 
 import pprint; pprint.pprint(solveroptions.common)
 
