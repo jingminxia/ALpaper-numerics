@@ -11,26 +11,26 @@ k2continuation: pre
 	python periodic2d/k2continuation.py --nref 1 --gamma 1e6 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/k2continuation-almgpbj.log
 
 newton: pre
-	$(exec) periodic2d/periodic2d.py --nref 1 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e3ref1.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 2 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e3ref2.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 3 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e3ref3.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 4 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e3ref4.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 5 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e3ref5.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 1 --gamma 1e4 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e4ref1.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 2 --gamma 1e4 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e4ref2.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 3 --gamma 1e4 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e4ref3.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 4 --gamma 1e4 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e4ref4.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 5 --gamma 1e4 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e4ref5.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 1 --gamma 1e5 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e5ref1.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 2 --gamma 1e5 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e5ref2.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 3 --gamma 1e5 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e5ref3.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 4 --gamma 1e5 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e5ref4.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 5 --gamma 1e5 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e5ref5.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 1 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e6ref1.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 2 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e6ref2.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 3 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e6ref3.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 4 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e6ref4.log || 1
-	$(exec) periodic2d/periodic2d.py --nref 5 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration newton | tee logs/newton-gamma1e6ref5.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 1 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e3ref1.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 2 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e3ref2.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 3 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e3ref3.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 4 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e3ref4.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 5 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e3ref5.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 1 --gamma 1e4 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e4ref1.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 2 --gamma 1e4 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e4ref2.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 3 --gamma 1e4 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e4ref3.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 4 --gamma 1e4 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e4ref4.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 5 --gamma 1e4 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e4ref5.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 1 --gamma 1e5 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e5ref1.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 2 --gamma 1e5 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e5ref2.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 3 --gamma 1e5 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e5ref3.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 4 --gamma 1e5 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e5ref4.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 5 --gamma 1e5 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e5ref5.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 1 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e6ref1.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 2 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e6ref2.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 3 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e6ref3.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 4 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e6ref4.log || 1
+	$(exec) periodic2d/periodic2d.py --nref 5 --gamma 1e6 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e6ref5.log || 1
 
 comptime: pre
 	python periodic2d/periodic2d.py --nref 1 --gamma 1e6 --k 2 --K 1 --solver-type almg-star --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/comptime-almgstar-ref1.log || 1
