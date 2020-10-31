@@ -6,7 +6,7 @@ import argparse
 import sys
 sys.path.append("./")
 import solveroptions, parserlist
-args, _ = parser.parse_known_args()
+args, _ = parserlist.parser.parse_known_args()
 
 distribution_parameters={"partition": True, "overlap_type": (DistributedMeshOverlapType.VERTEX, 1)}
 
@@ -230,7 +230,7 @@ if __name__ == "__main__":
           bcs = None
           return (a, bcs)
 
-    problem = OseenFrankProblem(10)
+    problem = Periodic2DProblem(10)
     solver = lcsolver(problem)
 
     upvdf = File("output/director.pvd")

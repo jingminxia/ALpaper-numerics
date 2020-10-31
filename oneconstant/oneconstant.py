@@ -13,7 +13,7 @@ def mdiv(n):
 def mcurl(n):
     return as_vector([n[2].dx(1), -n[2].dx(0), n[1].dx(0) - n[0].dx(1)])
 
-base = Mesh("../mesh/coarsetri.msh", distribution_parameters=solveroptions.distribution_parameters)
+base = Mesh("./mesh/coarsetri.msh", distribution_parameters=solveroptions.distribution_parameters)
 
 def before(dm, i):
     for p in range(*dm.getHeightStratum(1)):
