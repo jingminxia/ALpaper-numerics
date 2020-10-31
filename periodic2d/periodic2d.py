@@ -29,7 +29,7 @@ theta0 = pi/8
 q0 = Constant(0)
 gamma = Constant(args.gamma)
 
-class OseenFrankProblem(object):
+class Periodic2DProblem(object):
     def __init__(self, baseN):
         super().__init__()
         self.baseN = baseN
@@ -139,7 +139,7 @@ class OseenFrankProblem(object):
 
 if __name__ == "__main__":
 
-    problem = OseenFrankProblem(10)
+    problem = Periodic2DProblem(10)
     mesh = problem.mesh()
     Vele = VectorElement("CG", mesh.ufl_cell(), args.k, dim=3)
 

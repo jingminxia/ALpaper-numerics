@@ -264,13 +264,6 @@ if __name__ == "__main__":
     plt.figure(1)
     plt.xlabel(r"$q_0$")
     plt.title("%s" % pdfname)
-    plt.plot(q0s, nonlinear_iter, 'b', label="SNES iter.")
-    plt.legend()
-    plt.savefig("output/SNES_q0_%s.pdf" % pdfname)
-
-    plt.figure(2)
-    plt.xlabel(r"$q_0$")
-    plt.title("%s" % pdfname)
     plt.ylim((0,6))
     plt.plot(q0s, [a/b for a, b in zip(linear_iter, nonlinear_iter)], 'b', label="Aver. KSP iter.")
     plt.legend()

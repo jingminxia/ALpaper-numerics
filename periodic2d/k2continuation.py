@@ -3,6 +3,7 @@ from firedrake import *
 from datetime import datetime
 import numpy
 import argparse
+
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument("--nref", type=int, default=1)
 parser.add_argument("--gamma", type=float, default=1000000)
@@ -262,13 +263,6 @@ if __name__ == "__main__":
     
     import matplotlib.pyplot as plt
     plt.figure(1)
-    plt.xlabel(r"$K_2$")
-    plt.title("%s" % pdfname)
-    plt.plot(K2s, nonlinear_iter, label="SNES iter.")
-    plt.legend()
-    plt.savefig("output/SNES_K2_%s.pdf" % pdfname)
-
-    plt.figure(2)
     plt.xlabel(r"$K_2$")
     plt.title("%s" % pdfname)
     plt.ylim((0,6))

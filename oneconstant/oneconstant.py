@@ -13,7 +13,7 @@ def mdiv(n):
 def mcurl(n):
     return as_vector([n[2].dx(1), -n[2].dx(0), n[1].dx(0) - n[0].dx(1)])
 
-base = Mesh("../../mesh/coarsetri.msh", distribution_parameters=solveroptions.distribution_parameters)
+base = Mesh("../mesh/coarsetri.msh", distribution_parameters=solveroptions.distribution_parameters)
 
 def before(dm, i):
     for p in range(*dm.getHeightStratum(1)):
@@ -77,7 +77,10 @@ F_orig = derivative(L, z, v)
 
 L_aug = L + gamma/2 * inner(op(dot(n, n) - 1), op(dot(n, n) - 1))*dx
 F_aug = derivative(L_aug, z, v)
-J_aug = derivative(F_aug, z, w) - 2*gamma*inner(dot(n, n)-1, dot(p, m))*dx
+if args.nonlinear_iteration == "picard":
+    J_aug = derivative(F_aug, z, w) - 2*gamma*inner(dot(n, n)-1, dot(p, m))*dx
+else:
+    J_aug = derivative(F_aug, z, w)
 
 class Mass(AuxiliaryOperatorPC):
   def form(self, pc, test, trial):
