@@ -2,7 +2,7 @@ from firedrake import *
 from datetime import datetime
 import argparse
 import sys
-sys.path.append("../")
+sys.path.append("./")
 import solveroptions, parserlist
 
 args, _ = parserlist.parser.parse_known_args()

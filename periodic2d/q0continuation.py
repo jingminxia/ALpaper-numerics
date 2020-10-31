@@ -3,14 +3,9 @@ from firedrake import *
 from datetime import datetime
 import numpy
 import argparse
-parser = argparse.ArgumentParser(add_help=False)
-parser.add_argument("--nref", type=int, default=1)
-parser.add_argument("--gamma", type=float, default=1000000)
-parser.add_argument("--k", type=int, default=2)
-parser.add_argument("--solver-type", choices=["lu", "allu", "almg-star", "mgvanka", "fasvanka", "faspardecomp", "almg-pbj", "almg-j"], default="almg-star")
-parser.add_argument("--stab-type", choices=["discrete", "continuous"], default="continuous")
-parser.add_argument("--prolong-type", choices=["auto", "none"], default="none")
-parser.add_argument("--pressure-element", choices=["DG0", "CG1"], default="CG1")
+import sys
+sys.path.append("./")
+import solveroptions, parserlist
 args, _ = parser.parse_known_args()
 
 distribution_parameters={"partition": True, "overlap_type": (DistributedMeshOverlapType.VERTEX, 1)}
@@ -36,7 +31,7 @@ theta0 = pi/8
 q0 = Constant(0)
 gamma = Constant(args.gamma)
 
-class OseenFrankProblem(object):
+class Periodic2DProblem(object):
     def __init__(self, baseN):
         super().__init__()
         self.baseN = baseN
@@ -162,10 +157,6 @@ class lcsolver(object):
 
         self.bcs = problem.bcs(Z)
 
-        import sys
-        sys.path.append("../")
-        import solveroptions 
-
         choice = {"almg-star": solveroptions.fieldsplit_with_mg,
                   "allu": solveroptions.fieldsplit_with_chol,
                   "lu": solveroptions.splu,
@@ -179,7 +170,6 @@ class lcsolver(object):
             solveroptions.common = choice
         else:
             solveroptions.common.update(choice)
-        #import pprint; pprint.pprint(solveroptions.common)
 
         nvproblem = NonlinearVariationalProblem(F_aug, z, bcs=self.bcs, J=J_aug)
         nvsolver  = NonlinearVariationalSolver(nvproblem, solver_parameters=solveroptions.common)

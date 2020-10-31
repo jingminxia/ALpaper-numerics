@@ -164,7 +164,7 @@ class lcsolver(object):
         self.bcs = problem.bcs(Z)
 
         import sys
-        sys.path.append("../")
+        sys.path.append("./")
         import solveroptions 
 
         choice = {"almg-star": solveroptions.fieldsplit_with_mg,
