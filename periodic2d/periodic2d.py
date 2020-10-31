@@ -210,35 +210,38 @@ if __name__ == "__main__":
     nvproblem = NonlinearVariationalProblem(F_aug, z, bcs, J=J_aug)
     nvsolver  = NonlinearVariationalSolver(nvproblem, solver_parameters=solveroptions.common)
 
-    start = datetime.now()
-    nvsolver.solve()
-    end = datetime.now()
+    try:
+        start = datetime.now()
+        nvsolver.solve()
+        end = datetime.now()
 
-    constraintnorm = sqrt(assemble(inner(constraint, constraint)*dx))
+        constraintnorm = sqrt(assemble(inner(constraint, constraint)*dx))
 
-    b = assemble(F_orig)
-    [bc.zero(b) for bc in bcs]
-    with b.dat.vec_ro as x:
-        resnorm = x.norm()
+        b = assemble(F_orig)
+        [bc.zero(b) for bc in bcs]
+        with b.dat.vec_ro as x:
+            resnorm = x.norm()
 
-    linear_its = nvsolver.snes.getLinearSolveIterations()
-    nonlinear_its = nvsolver.snes.getIterationNumber()
-    time = (end-start).total_seconds() / 60
-    print(BLUE % ("Time taken: %.2f min in %d/%d iterations (%.2f Krylov iters per Newton step)" % (time, linear_its, nonlinear_its, linear_its/float(nonlinear_its))))
-    print(BLUE % ("||n·n - 1||  = %.14e" % constraintnorm))
-    print(BLUE % ("||residual|| = %.14e" % resnorm))
+        linear_its = nvsolver.snes.getLinearSolveIterations()
+        nonlinear_its = nvsolver.snes.getIterationNumber()
+        time = (end-start).total_seconds() / 60
+        print(BLUE % ("Time taken: %.2f min in %d/%d iterations (%.2f Krylov iters per Newton step)" % (time, linear_its, nonlinear_its, linear_its/float(nonlinear_its))))
+        print(BLUE % ("||n·n - 1||  = %.14e" % constraintnorm))
+        print(BLUE % ("||residual|| = %.14e" % resnorm))
 
-    (n_, lmbda_) = z.split()
-    n_.rename("Director")
-    File("output/director.pvd").write(n_)
-    
-    E = assemble(problem.energy(n_, mesh))
-    print(BLUE % ("Final energy: %.6f" % E))
-    print(BLUE % ("Analytical energy: %.6f" % problem.analytical_energy()))
+        (n_, lmbda_) = z.split()
+        n_.rename("Director")
+        File("output/director.pvd").write(n_)
+        
+        E = assemble(problem.energy(n_, mesh))
+        print(BLUE % ("Final energy: %.6f" % E))
+        print(BLUE % ("Analytical energy: %.6f" % problem.analytical_energy()))
 
-    n_exact = Function(Z).split()[0]
-    n_exact.interpolate(problem.analytical_solution(mesh))
-    l2error = errornorm(n_exact, n_, norm_type="L2")
-    print(BLUE % ("L2-norm of error: %.6e" % l2error))
-    h1error = errornorm(n_exact, n_, norm_type="H1")
-    print(BLUE % ("H1-norm of error: %.6e" % h1error))
+        n_exact = Function(Z).split()[0]
+        n_exact.interpolate(problem.analytical_solution(mesh))
+        l2error = errornorm(n_exact, n_, norm_type="L2")
+        print(BLUE % ("L2-norm of error: %.6e" % l2error))
+        h1error = errornorm(n_exact, n_, norm_type="H1")
+        print(BLUE % ("H1-norm of error: %.6e" % h1error))
+    except ConvergenceError:
+        print("Warning: the solver did not converge here")

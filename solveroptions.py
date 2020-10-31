@@ -7,6 +7,7 @@ common = {
      "snes_max_it":  1000,
      "snes_rtol": 1.0e-16,
      "snes_atol": 1.0e-8,
+     "ksp_max_it": 100,
      "ksp_rtol": 1.0e-4,
      "ksp_atol": 1.0e-8,
      "ksp_monitor": None,
