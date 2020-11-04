@@ -5,6 +5,7 @@ import argparse
 import sys
 sys.path.append("./")
 import solveroptions, parserlist
+from mpi4py import MPI
 
 args, _ = parserlist.parser.parse_known_args()
 
@@ -159,7 +160,8 @@ if __name__ == "__main__":
     z = Function(Z)
     z.split()[0].interpolate(n0)
     dofs = z.function_space().dim()
-    print(GREEN % ("dofs: %s" % dofs))
+    if MPI.COMM_WORLD.size == 1:
+        print(GREEN % ("dofs: %s" % dofs))
 
     (n, lmbda) = split(z)
 
@@ -204,7 +206,8 @@ if __name__ == "__main__":
     else:
         solveroptions.common.update(choice)
 
-    import pprint; pprint.pprint(solveroptions.common)
+    if MPI.COMM_WORLD.size == 1:
+        import pprint; pprint.pprint(solveroptions.common)
 
     bcs = problem.bcs(Z)
     nvproblem = NonlinearVariationalProblem(F_aug, z, bcs, J=J_aug)
