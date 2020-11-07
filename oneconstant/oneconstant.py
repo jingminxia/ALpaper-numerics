@@ -4,6 +4,7 @@ import argparse
 import sys
 sys.path.append("./")
 import solveroptions, parserlist
+from mpi4py import MPI
 
 args, _ = parserlist.parser.parse_known_args()
 
@@ -54,7 +55,8 @@ bcs = [DirichletBC(Z.sub(0), Constant((0, 0, 1)), "on_boundary")]
 z = Function(Z)
 z.split()[0].interpolate(n0)
 dofs = z.function_space().dim()
-print(GREEN % ("dofs: %s" % dofs))
+if MPI.COMM_WORLD.size == 1:
+    print(GREEN % ("dofs: %s" % dofs))
 
 (n, lmbda) = split(z)
 
@@ -107,7 +109,8 @@ else:
     else:
         solveroptions.common.update(choice)
 
-import pprint; pprint.pprint(solveroptions.common)
+if MPI.COMM_WORLD.size == 1:
+    import pprint; pprint.pprint(solveroptions.common)
 
 nvproblem = NonlinearVariationalProblem(F_aug, z, bcs, J=J_aug)
 nvsolver  = NonlinearVariationalSolver(nvproblem, solver_parameters=solveroptions.common)
