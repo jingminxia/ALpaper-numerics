@@ -102,10 +102,10 @@ choice = {"almg-star": solveroptions.fieldsplit_with_mg,
 if args.solver_type in ["fasvanka", "faspardecomp"]:
     solveroptions.common = choice
 else:
-    if args.improv_constraint == "True":
+    if args.improv_constraint == "on":
         solveroptions.common.update(choice)
-        solveroptions.common["snes_rtol"] = 1e-7
-        solveroptions.common["snes_atol"] = 1e-16
+        solveroptions.common["ksp_rtol"] = 1e-4
+        solveroptions.common["ksp_atol"] = 1e-10
     else:
         solveroptions.common.update(choice)
 
