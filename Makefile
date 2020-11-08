@@ -11,6 +11,20 @@ k2continuation: pre
 	python periodic2d/k2continuation.py --nref 1 --gamma 1e6 --k 2 --K 1 --solver-type almg-star --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/k2continuation-almgstar.log
 	python periodic2d/k2continuation.py --nref 1 --gamma 1e6 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonliear-iteration picard | tee logs/k2continuation-almgpbj.log
 
+convergence: pre
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 1 --gamma 1e4 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e4-ref1.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 2 --gamma 1e4 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e4-ref2.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 3 --gamma 1e4 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e4-ref3.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 4 --gamma 1e4 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e4-ref4.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 1 --gamma 1e5 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e5-ref1.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 2 --gamma 1e5 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e5-ref2.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 3 --gamma 1e5 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e5-ref3.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 4 --gamma 1e5 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e5-ref4.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 1 --gamma 1e6 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e6-ref1.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 2 --gamma 1e6 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e6-ref2.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 3 --gamma 1e6 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e6-ref3.log || 1
+	$(mpi4) periodic2d/periodic2d.py --convergence on --nref 4 --gamma 1e6 --k 2 --K 1 --solver-type almg-pbj --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration picard | tee logs/convergence-gamma1e6-ref4.log || 1
+
 newton: pre
 	$(exec) periodic2d/periodic2d.py --nref 1 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e3ref1.log || 1
 	$(exec) periodic2d/periodic2d.py --nref 2 --gamma 1e3 --k 2 --K 1 --solver-type allu --stab-type continuous --prolong-type none --pressure-element CG1 --nonlinear-iteration newton | tee logs/newton-gamma1e3ref2.log || 1

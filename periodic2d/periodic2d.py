@@ -204,7 +204,16 @@ if __name__ == "__main__":
     if args.solver_type in ["fasvanka", "faspardecomp"]:
         solveroptions.common = choice
     else:
-        solveroptions.common.update(choice)
+        # tighten the solver tolerance to make sure solver converges
+        # at the same criterion
+        if args.convergence == "on":
+            solveroptions.common.update(choice)
+            solveroptions.common["ksp_atol"] = 1e-16
+            solveroptions.common["ksp_rtol"] = 1e-4
+            solveroptions.common["snes_rtol"] = 1e-16
+            solveroptions.common["snes_atol"] = 1e-10
+        else:
+            solveroptions.common.update(choice)
 
     if MPI.COMM_WORLD.size == 1:
         import pprint; pprint.pprint(solveroptions.common)
